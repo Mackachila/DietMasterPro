@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Recommendation System</title>
+    <link rel="stylesheet" href="recomend.css">
+    <script defer src="recomend.js"></script>
+
+    
+</head>
+<body>
+    <div class="recommendation-container">
+        <h1>Diet Recommendation System</h1>
+        <form id="userForm">
+            <div class="form-group">
+                <label for="health_conditions">Health Conditions:</label>
+                <input type="text" id="health_conditions" name="health_conditions" placeholder="E.g., Diabetes, Obesity">
+            </div>
+            <div class="form-group">
+                <label for="allergies">Allergies:</label>
+                <input type="text" id="allergies" name="allergies" placeholder="E.g., Nuts, Dairy">
+            </div>
+            <div class="form-group">
+                <label for="favorite_meals">Favorite Meals:</label>
+                <input type="text" id="favorite_meals" name="favorite_meals" placeholder="E.g., Pancakes, Rice">
+            </div>
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
+
+        <div class="card" id="resultsCard">
+            <div class="card-header">
+                <h2>Recommended Meal Plan</h2>
+                <button id="toggleCard">View Details</button>
+            </div>
+            <div class="card-content" id="cardContent">
+                <div id="results"></div>
+            </div>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    
+</body>
+</html>

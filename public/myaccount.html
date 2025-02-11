@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- you need to /check-registration -->
+<!-- live -->
+    <title>account</title>
+    <link rel="stylesheet" href="myaccount.css">
+</head>
+<body>
+
+<button id="scrollToTopBtn" class="scroll-to-top-btn" onclick="scrollToTop()">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M12 5l7 7h-4v8h-6v-8h-4z" fill="white"/>
+  </svg>
+</button>
+
+
+
+    <div id="scrollProgress"></div>
+
+
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- <img src="mtslogo3.png" alt="MTS" class="navbar-logo"> -->
+        <div class="navbar-logo">
+            <div class="logo-container">
+                <img src="logo.png" alt="Diet Suggestion System Logo" class="logoimage">
+            </div>DIET MASTER</div>
+        <ul class="navbar-links">
+            <!-- <li class="dropdown">
+                <a href="#more">Classes</a>
+                <ul class="dropdown-menu" id="registration-dropdown">
+                  <li><a href="#" data-course="Front-End web design">Front-End web design</a></li>
+                  <li><a href="#" data-course="Back-End web Skills">Back-End web development</a></li>
+                  <li><a href="#" data-course="Full-Stack web development">Full-Stack web development</a></li>
+                  <li><a href="#" data-course="Software Engineering Classes">Software Engineering</a></li>
+                  <li><a href="#" data-course="Computer Packages Classes">Computer Packages</a></li>
+                  <li><a href="#" data-course="Cyber attendant">Cyber attendant</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Web design</a></li>
+            <li><a href="#">Software Engeneering</a></li> -->
+            <!-- <li><a href="#contact-section">Cyber</a></li>
+                        <li> -->
+                <a href="#" id="signupbutton" style="background-color: lightgray; border-radius: 30px; padding: 10px; color: lightseagreen;">Get Recomendation</a>
+            </li>
+            
+        </ul>
+        
+        <button id="toggleDashboard" class="dashboard-toggle">☰</button>
+    </nav>
+
+    <!-- Overlay for mobile view -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Information Dashboard -->
+    <!-- Information Dashboard -->
+<aside id="dashboard" class="dashboard">
+    <button id="closeDashboard" class="close-button" style="color: black;">X</button>
+    
+    <div class="dashboard-title">
+        <!-- <img src="user6.png" alt="Profile" class="title-profile-image"> -->
+        <img src="user6.png" alt="Profile" class="title-profile-image" id="thumbnailImage" style="cursor: pointer;">
+        <h1 class="dashboard-heading" id="dashboard-heading">Loading...</h1>
+        <button class="logout" id="logout"><i class="fas fa-power-off" style="color: white; border: none"></i> Log Out</button>
+      </div><br>
+    <!-- New Close Button
+    <img src="user6.png" alt="Profile" class="profile-image"> dashboard-content -->
+    
+    <div class="dashboard-content">
+           
+        <!-- Skills Section -->
+        <div class="section">
+          <div class="services" id="services" style="color: white;">
+                <button class="section2-toggle" id="toggleServices" style="color: white">
+                    <i class="fas fa-code"></i>Classes <span class="arrow">▼</span>
+                </button>
+                <div class="section-content" id="servicesContent" style="background-color: whitesmoke;">
+                  <ul class="dropdown-menu" id="registrationn-dropdown"> <!-- added n -->
+                    <li><a href="#" data-course="Front-End web design">Front-End web design</a></li>
+                    <li><a href="#" data-course="Back-End web development">Back-End web development</a></li>
+                    <li><a href="#" data-course="Full-Stack web development">Full-Stack web development</a></li>
+                    <li><a href="#" data-course="Software Engineering">Software Engineering</a></li>
+                    <li><a href="#"data-course="Computer Packages">Computer Packages</a></li>
+                    <li><a href="#" data-course="Cyber attendant">Cyber attendant</a></li>
+                  </ul>
+                </div>
+
+                <div class="section" style="color: white;">
+                    <a href="#"><button class="section2-toggle" id="toggleskillssection">
+                        <i class="fas fa-phone-alt"></i> Web Design
+                    </button></a>
+                    </div>
+                <div class="section">
+                    <a href="#"><button class="section2-toggle" id="toggleprojectsection">
+                        <i class="fas fa-phone-alt"></i> Software Engineering
+                    </button></a>
+                    </div>
+                
+                <div class="section">
+                    <a href="#"><button class="section2-toggle" id="toggleaboutsection">
+                        <i class="fas fa-phone-alt"></i> Cyber
+                    </button></a>
+                    </div>
+                    <br>
+            <h2 style="color: black; font-size: large;">Your info</h2>
+        </div>
+            <button class="section-toggle" id="toggleSkills">
+                <i class="fas fa-code"></i> Registered Courses <span class="arrow">▼</span>
+            </button>
+            <div class="section-content" id="skillsContent">
+                <p>Loading...</p>
+            </div>
+        
+    
+        <!-- Contact Section -->
+        <div class="section">
+            <button class="section-toggle" id="toggleContact">
+                <i class="fas fa-phone-alt"></i> Contact <span class="arrow">▼</span>
+            </button>
+            <div class="section-content" id="contactContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+    
+        <!-- Email Section -->
+        <div class="section">
+            <button class="section-toggle" id="toggleEmail">
+                <i class="fas fa-envelope"></i> Email <span class="arrow">▼</span>
+            </button>
+            <div class="section-content" id="emailContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+<!-- LinkedIn -->
+        <div class="section">
+            <button class="section-toggle" id="togglelinkedin">
+                <i class="fab fa-linkedin"></i> Completed Courses <span class="arrow">▼</span>
+            </button>
+            <div class="section-content" id="linkedinContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+    <!-- GitHub -->
+        <div class="section">
+            <button class="section-toggle" id="togglegithub">
+                <i class="fab fa-github"></i> Pending Services <span class="arrow">▼</span>
+            </button>
+            <div class="section-content" id="githubContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+        <!-- Abilities Section -->
+        <div class="section">
+            <button class="section-toggle" id="toggleAbilities">
+                <i class="fas fa-cogs"></i> Certificates <span class="arrow">▼</span>
+            </button>
+            <div class="section-content" id="abilitiesContent">
+                <p>Loading...</p>
+            </div>
+           
+        </div>
+    </div>
+    
+    
+</aside>
+
+
+    <!-- Main Content -->
+    <main class="content"><br><br>
+        <section id="home">
+           <!-- Carousel -->
+<div id="slideimages" class="carousel slide" data-ride="carousel" data-pause="false">
+    <ol class="carousel-indicators">
+        <li data-target="#slideimages" data-slide-to="0" class="active"></li>
+        <li data-target="#slideimages" data-slide-to="1"></li>
+        <li data-target="#slideimages" data-slide-to="2"></li>
+        <li data-target="#slideimages" data-slide-to="3"></li>
+        <li data-target="#slideimages" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="learnwithus.png" class="d-block w-100" alt="Investment Slide 1">
+            <div class="carousel-caption">
+                <h5>Online Classes</h5>
+                <p>Flexible Web development, Software Engineering and Computer Packages classes</p>
+                <a href="#l" class="btnn">Join now</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="becomewebdev.png" class="d-block w-100" alt="Investment Slide 2">
+            <div class="carousel-caption">
+                <h5>Web Design</h5>
+                <p>We do Professional Web Design</p>
+                <a href="#l" class="btnn">Get a website</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="softwareengineer2.png" class="d-block w-100" alt="Investment Slide 3">
+            <div class="carousel-caption">
+                <h5>Software Engineering</h5>
+                <p>Modern and professional Software Development</p>
+                <a href="#l" class="btnn">Get your Software</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="background.avif" class="d-block w-100" alt="Investment Slide 4">
+            <div class="carousel-caption">
+                <h5>IT support</h5>
+                <p>We are flexible. Just let us know</p>
+                <a href="#l" class="btnn">Get Support</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="hero.jpg" class="d-block w-100" alt="Investment Slide 5">
+            
+            <div class="carousel-caption">
+                <h5>Cyber Services</h5>
+                <p>Online and physical cyber services</p>
+                <a href="#l" class="btnn">Get sevice</a>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#slideimages" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slideimages" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+        </section><br>
+        <!-- <section class="recommendationsection">
+            <div class="card welcome-card">
+              <div class="card-header">
+                <span class="banner">Diet Master</span>
+              </div>
+              <div class="card-body">
+                <h2 class="animated-text">Get your Diet recommended Right now</h2>
+              </div>
+            </div>
+          
+            <div class="card request-card">
+              <div class="card-header">
+                <span class="banner">Diet Master</span>
+              </div>
+              <div class="card-body">
+                <h3>Say what you want</h3>
+                <input type="text" placeholder="Enter your preferences" />
+                <button>Get recommendation</button>
+              </div>
+            </div>
+          </section> -->
+
+          <section class="recommendationsection">
+            <div class="card welcome-card">
+              <div class="card-header">
+                <span class="banner">Diet Master</span>
+              </div>
+              <div class="card-body">
+                <h2 class="zooming-text">Get your Diet recommended Right now</h2>
+              </div>
+            </div>
+          
+            <div class="card request-card">
+              <div class="card-header">
+                <span class="banner">Diet Master</span>
+              </div>
+              <div class="card-body">
+                <h3>Say what you want</h3>
+                <input type="text" placeholder="Enter your preferences" />
+                <button id="getRecommendationBtn">Get recommendation</button>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Floating Recommendation Card -->
+          <div class="floating-card" id="floatingCard">
+            <div class="card-header">
+                <b>Recommendation results</b>
+              <span class="banner">Diet Master</span>
+            </div>
+            <div class="card-body">
+              
+              <p>Here are your recommended diets based on the information you provided.</p>
+              <p><strong>Diet 1:</strong> High-Protein Diet</p>
+              <p><strong>Diet 2:</strong> Mediterranean Diet</p>
+              <p><strong>Diet 3:</strong> Keto Diet</p>
+            </div>
+            <div class="card-footer">
+              <button id="closeBtn">Close</button>
+            </div>
+          </div>
+          <div class="container">
+            <h1>Diet Recommendation System</h1>
+            <form id="dietForm">
+              <label for="allergies">Allergies:</label>
+              <input type="text" id="allergies" name="allergies" required>
+        
+              <label for="likedFoods">Liked Foods:</label>
+              <input type="text" id="likedFoods" name="likedFoods" required>
+        
+              <label for="dislikedFoods">Disliked Foods:</label>
+              <input type="text" id="dislikedFoods" name="dislikedFoods" required>
+        
+              <label for="healthConditions">Health Conditions:</label>
+              <input type="text" id="healthConditions" name="healthConditions" required>
+        
+              <label for="otherDetails">Other Details (optional):</label>
+              <textarea id="otherDetails" name="otherDetails"></textarea>
+        
+              <button type="submit">Generate Diet Plan</button>
+            </form>
+            <div id="dietResult"></div>
+          </div>      
+          
+          <form id ="detailsupdateform">
+            <label for="Alergies">Do you have any alergie?</label>
+            <input type="text" id="elergies" placeholder="Any Alergies">
+            <label for="Alergies">Do you have any dislikes?</label>
+            <input type="text" id="dislikes" placeholder="Dislikes">
+            <label for="Alergies">Do you have any Healthconditions?</label>
+            <input type="text" id="healthconditions" placeholder="Health Conditions">
+            <label for="Alergies">Do you have any Likes?</label>
+            <input type="text" id="likes" placeholder="List any likes">
+
+            <input type="submit" value="submit">
+          </form>
+        <section class="chat-section">
+            <div class="chat-button" id="chatButton">
+                <i class="fa fa-comments"></i> Get Help
+            </div>
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <h3>Mackachila Chat Bot</h3>
+                    <button id="closeChat" class="close-chat-btn">&times;</button>
+                </div>
+                <div class="chat-body">
+                    <div class="chat-message left">
+                        <div class="chat-bubble">
+                            <p>Hello! I am just but a chat Bot Build by Jared Mackachila, I may not be able to answer all your questions correctly but I will try my best. How can I assist you today?</p>
+                        </div>
+                    </div>
+                    <!-- User and support messages will appear here -->
+                </div>
+                <div class="chat-footer">
+                    <input type="text" id="chatInput" placeholder="Type your message..." />
+                    <button id="sendChat" class="send-chat-btn">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Additional sections like About, Projects, Blog, etc. -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>About Mackachila</h3>
+            <p>Mackachila (Real name: Jared Odhiambo) is an experienced Full-Stack web developer and a programmer who has vast knowlege in so many languages including: Java, JavaScript, Python, Node.js, React.js, SQL, Visual Basic, CSS, HTML and good knowledge in Database systems.</p>
+          </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#courses">Projects</a></li>
+              <li><a href="#admissions">Qualifications</a></li>
+              <li><a href="#contact">Abilities</a></li>
+              <li><a href="#blog">About</a></li>
+              <li><a href="#events">Contact</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Services</h3>
+            <ul class="footer-links">
+              <li><a href="#l">Web Development</a></li>
+              <li><a href="#l">Software Engineering</a></li>
+              <li><a href="#l">Networking</a></li>
+              <li><a href="#l">Cyber Security</a></li>
+              <li><a href="#l">Computer Training</a></li>
+              <li><a href="#l">IT Support</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Search the Site</h3>
+            <form class="footer-search-form">
+              <input type="text" class="footer-search-input" placeholder="Search..." aria-label="Search">
+              <button type="submit" class="footer-search-button"><i class="fas fa-search"></i></button>
+            </form>
+            <h3>Follow Us</h3>
+            <ul class="social-media-links">
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Jared Mackachila. All Rights Reserved.</p>
+        </div>
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script src="myaccount.js"></script>
+<script>
+ // Get the dropdown menu
+const dropdown = document.getElementById("registration-dropdown");
+
+// Ensure dropdown exists
+if (dropdown) {
+  dropdown.addEventListener("click", async (event) => {
+    // Check if the clicked element is a link
+    if (event.target.tagName === "A") {
+      event.preventDefault(); // Prevent default navigation behavior
+
+      const selectedCourse = event.target.dataset.course; // Get the course name
+      console.log("Selected course:", selectedCourse); // Debugging log
+
+      try {
+        // Send a request to check registration
+        const response = await fetch("/check-registration", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ course: selectedCourse }),
+        });
+
+        const data = await response.json();
+        console.log("Server response:", data); // Debugging log
+
+        if (data.isRegistered === false) {
+          // Redirect to the courseregistration page with the selected course as a query parameter
+          window.location.href = `/courseregistration?course=${encodeURIComponent(selectedCourse)}`;
+        } else {
+          console.log("User registered. Redirect to classes page.");
+          window.location.href = '/joinclasses';
+        }
+      } catch (error) {
+        console.error("Error checking registration:", error);
+      }
+    }
+  });
+} else {
+  console.error("Dropdown menu not found!");
+}
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Meals</title>
+  <style>
+    /* General body styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Heading */
+h1 {
+  font-size: 2rem;
+  color: #20b2aa;
+  margin-bottom: 30px;
+}
+
+/* Form sections */
+section {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #20b2aa;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #ccc;
+}
+
+/* Input fields and textarea */
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #444;
+  color: #f1f1f1;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+/* Button styles */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #20b2aa;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #17a087;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  section {
+    width: 100%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Meal Management</h1>
+
+  <!-- Form to add new meal -->
+  <section id="add-meal-section">
+    <h2>Add a New Meal</h2>
+    <form id="add-meal-form">
+      <label for="meal-name">Meal Name:</label>
+      <input type="text" id="meal-name" name="meal_name" required>
+
+      <label for="meal-type">Meal Type:</label>
+      <select id="meal-type" name="meal_type" required>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="supper">Supper</option>
+      </select>
+
+      <label for="nutrition-info">Nutrition Information:</label>
+      <textarea id="nutrition-info" name="nutrition_info" required></textarea>
+
+      <button type="submit">Add Meal</button>
+    </form>
+  </section>
+
+  <!-- Form to delete a meal -->
+  <section id="delete-meal-section">
+    <h2>Delete a Meal</h2>
+    <form id="delete-meal-form">
+      <label for="delete-meal-name">Meal Name to Delete:</label>
+      <input type="text" id="delete-meal-name" name="meal_name" required>
+
+      <button type="submit">Delete Meal</button>
+    </form>
+  </section>
+
+  <script>
+    document.getElementById("add-meal-form").addEventListener("submit", async (e) => {
+  e.preventDefault(); // Prevent default form submission
+
+  const mealName = document.getElementById("meal-name").value;
+  const mealType = document.getElementById("meal-type").value;
+  const nutritionInfo = document.getElementById("nutrition-info").value;
+
+  try {
+    const response = await fetch("/add-meal", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ meal_name: mealName, meal_type: mealType, nutrition_info: nutritionInfo }),
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      alert("Meal added successfully!");
+      document.getElementById("add-meal-form").reset();
+    } else {
+      alert("Failed to add meal.");
+    }
+  } catch (err) {
+    console.error("Error adding meal:", err);
+    alert("Error adding meal.");
+  }
+});
+
+document.getElementById("delete-meal-form").addEventListener("submit", async (e) => {
+  e.preventDefault(); // Prevent default form submission
+
+  const mealName = document.getElementById("delete-meal-name").value;
+
+  try {
+    const response = await fetch("/delete-meal", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ meal_name: mealName }),
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      alert("Meal deleted successfully!");
+      document.getElementById("delete-meal-form").reset();
+    } else {
+      alert("Failed to delete meal.");
+    }
+  } catch (err) {
+    console.error("Error deleting meal:", err);
+    alert("Error deleting meal.");
+  }
+});
+
+  </script> <!-- Link to JavaScript -->
+</body>
+</html>

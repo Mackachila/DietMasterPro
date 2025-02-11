@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Profile</title>
+  <link rel="stylesheet" type="text/css" href="./control.css">
+  <script defer src="./control.js"></script>
+</head>
+<body>
+  <h1>Update Profile</h1>
+  <form action="/profile" method="POST">
+    <label for="age">Age:</label>
+    <input type="number" name="age" required><br>
+
+    <label for="weight">Weight (kg):</label>
+    <input type="number" name="weight" required><br>
+
+    <label for="height">Height (cm):</label>
+    <input type="number" name="height" required><br>
+
+    <label for="health_conditions">Health Conditions:</label>
+    <input type="text" name="health_conditions" placeholder="e.g. diabetes"><br>
+
+    <label for="dietary_preferences">Dietary Preferences:</label>
+    <input type="text" name="dietary_preferences" placeholder="e.g. vegetarian"><br>
+
+    <button type="submit">Update Profile</button>
+  </form>
+</body>
+</html>

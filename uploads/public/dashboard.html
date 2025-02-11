@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- <link rel="stylesheet" href="regi.css"> -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1 class="nav-brand">Dashboard</h1>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        
+        </div>
+        <button class="toggle-profile-btn" onclick="toggleProfileSection()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Overlay for Small Screens -->
+    <div class="overlay" onclick="toggleProfileSection()"></div>
+
+    <div class="dashboard-container">
+        <!-- Profile Section -->
+        <aside class="profile-section">
+            <button class="close-profile-btn" onclick="toggleProfileSection()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="profile-header">
+                <img src="developer.png" alt="User Profile" class="profile-img">
+                <button class="edit-img-btn"><i class="fas fa-edit"></i> Edit</button>
+            </div>
+            <div class="profile-info">
+                <h3>User Name</h3>
+                <p>Email: user@example.com</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Section -->
+        <main class="main-content">
+            <div class="course-buttons">
+                <button class="course-btn">Course 1</button>
+                <button class="course-btn">Course 2</button>
+                <button class="course-btn">Service 1</button>
+                <button class="course-btn">Service 2</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Dashboard App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleProfileSection() {
+            const profileSection = document.querySelector('.profile-section');
+            const overlay = document.querySelector('.overlay');
+            profileSection.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

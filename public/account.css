@@ -1,0 +1,217 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0a0a0a;
+    color: lightseagreen;
+}
+a{
+    text-decoration: none;
+}
+/* Header and search bar */
+.search-header {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: #0a0a0a;
+}
+
+/* Logo Styling */
+.logo-container {
+    margin-right: auto; /* Pushes the search bar to the right */
+    display: flex;
+    align-items: center; /* Vertically align logo with search bar */
+}
+
+.logo {
+    width: 150px; /* Adjust the size of the logo */
+    height: auto; /* Keep aspect ratio */
+    max-width: 100%;
+}
+
+/* Search Header */
+.search-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between logo and search bar */
+    background-color: #0a0a0a;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #444;
+    border-radius: 50px;
+    padding: 10px 20px;
+    background-color: #1a1a1a;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 10px;
+    width: 200px;
+}
+
+.search-bar .fa-search {
+    color: #fff;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .search-header {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .logo {
+        margin-bottom: 10px; /* Space between logo and search bar on small screens */
+        width: 120px; /* Resize logo on smaller screens */
+    }
+    .search-bar input {
+        width: 100%; /* Full-width search bar on small screens */
+    }
+    #animated-heading{
+        font-size: 1rem;
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    height: 40vh;
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, lightseagreen, lightseagreen);
+    border: none;
+    border-radius: 25px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.cta-btn:hover {
+    opacity: 0.8;
+}
+
+/* Features Section */
+.features {
+    padding: 50px;
+    text-align: center;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Prevent overlapping and allow cards to wrap if necessary */
+    gap: 20px; /* Spacing between cards */
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    flex: 1 1 300px; /* Cards should be flexible and have a minimum width */
+    max-width: 300px; /* Set a maximum width */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Responsive Design - For small screens */
+@media (max-width: 768px) {
+    .feature-cards {
+        justify-content: center; /* Center the cards */
+        flex-direction: row; /* Align horizontally on small screens */
+    }
+
+
+    .card {
+        max-width: 100%; /* Allow cards to take full width if necessary */
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #111;
+    text-align: center;
+    padding: 20px;
+    color: #ccc;
+}
+
+
+/* Animated heading styles */
+#animated-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent; /* Hide cursor initially */
+    display: inline-block;
+    position: relative;
+}
+
+/* Typing effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Underline effect */
+@keyframes underline {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+    from {
+        border-right-color: transparent;
+    }
+    to {
+        border-right-color: white;
+    }
+}
+
+/* Apply underline with animation */
+.underline-animation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    animation: underline 1s ease forwards;
+}

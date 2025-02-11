@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Creation - Diet Suggestion System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="registration.css">
+    <script defer src="./main.js"></script>
+
+</head>
+<body>
+    <!-- Navigation Section not now-->
+    <header class="search-header">
+        <div class="logo-container">
+            <img src="logo.png" alt="Diet Suggestion System Logo" class="logo">
+        </div>
+    </header>
+
+    <!-- Account Creation Form Section -->
+    <div class="registration-container">
+        <h2 id="main-heading">Which account do you want to create?</h2> <!-- Added ID for targeting -->
+        <div class="button-group">
+            <button class="register-button" onclick="toggleForm('individual')">My Account</button>
+            <button class="register-button" onclick="toggleForm('family')">My Family Account</button>
+            <p>Have an account? <a href="login.html">Login</a></p>
+            <a href="./account"> <button class="cancel-button">Not now</button></a>
+        </div>
+
+        <!-- Individual Registration Form -->
+        <div id="individual-form" class="registration-form" style="display: none;">
+            <h2>Individual Registration</h2>
+            <form action = "/individualregistration" method = "post" id="individual_registration_form">
+                <div id="individual_empty_error" style="color: red;"></div>
+                <div class="input-group">
+                    <label for="individual-email">Email</label>
+                    <input type="text" id="individual_email" name="individual_email" placeholder="Enter your email">
+                    <div id="individual-email-error" class="error"></div>
+                </div>
+                <div class="input-group">
+                    <label for="individual-password">Password</label>
+                    <input type="password" id="individual_password" name="individual_password" placeholder="Enter your password">
+                    <div id="individual-password-error" class="error"></div>
+                </div>
+                <div class="input-group">
+                    <label for="individual-confirm-password">Confirm Password</label>
+                    <input type="password" id="individual_confirm_password" name="individual_confirm_password" placeholder="Confirm your password">
+                    <div id="individual-confirmpassword-error" class="error"></div>
+                </div>
+                <button type="submit" class="register-button">Register</button>
+            </form>
+            <div class="switch-text" id="switch-text-individual" style="display: none;" onclick="resetForm()">Or register as a family</div>
+        </div>
+
+        <!-- Family Registration Form -->
+        <div id="family-form" class="registration-form" style="display: none;">
+            <h2>Family Registration</h2>
+            <form action = "/familyregistration" method = "post" id="family_registration_form">
+                <div class="input-group">
+                    <label for="number-of-members">Number of Family Members</label>
+                    <input type="number" id="members" name="members" placeholder="Enter number of members">
+                </div>
+                <div class="input-group">
+                    <label for="family-email">Email</label>
+                    <input type="text" id="family_email" name="family_email" placeholder="Enter your email">
+                </div>
+                <div class="input-group">
+                    <label for="family-password">Password</label>
+                    <input type="password" id="family_password" name="family_password" placeholder="Enter your password">
+                </div>
+                <div class="input-group">
+                    <label for="family-confirm-password">Confirm Password</label>
+                    <input type="password" id="family_confirm_password" name="family_confirm_password" placeholder="Confirm your password">
+                </div>
+                <button type="submit" class="register-button">Register</button>
+            </form>
+            <div class="switch-text" id="switch-text-family" style="display: none;" onclick="resetForm()">Or register as an individual</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Suggestion System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Include Font Awesome from CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="account.css">
+</head>
+<body>
+    <!-- Navigation Section -->
+<header class="search-header">
+    <div class="logo-container">
+        <img src="logo.png" alt="Diet Suggestion System Logo" class="logo">
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <i class="fa fa-search"></i> <!-- Font Awesome search icon -->
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Welcome to Diet Master</h1>
+            <h2 id="animated-heading"></h2>
+           
+            <p>Personalized nutrition suggestions for better health, fitness, and well-being.</p>
+            <a href="userlogin" class="cta-btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>How It Works</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <h3>Personalized Diets</h3>
+                <p>Get diet plans tailored to your health needs.</p>
+            </div>
+            <div class="card">
+                <h3>Real-time Suggestions</h3>
+                <p>Diet suggestions updated as per your latest health data.</p>
+            </div>
+            <div class="card">
+                <h3>Family & Individual Plans</h3>
+                <p>Meal plans for the whole family, customized for each member.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2024 Diet Suggestion System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const text = "Meet your diet doctor"; // The text to display
+            const animatedHeading = document.getElementById("animated-heading");
+            let index = 0;
+            let typingInterval;
+            
+            // Simulate typing by progressively adding characters
+            function typeEffect() {
+                animatedHeading.textContent = ""; // Reset text content
+                index = 0;
+                typingInterval = setInterval(() => {
+                    if (index < text.length) {
+                        animatedHeading.textContent += text.charAt(index);
+                        index++;
+                    } else {
+                        clearInterval(typingInterval);
+                        showUnderline(); // Show underline after typing
+                    }
+                }, 80); // Adjust typing speed (150ms per character)
+            }
+    
+            // Underline effect after typing is done
+            function showUnderline() {
+                // Create a span for the underline animation
+                const underline = document.createElement('span');
+                underline.classList.add('underline-animation');
+                animatedHeading.appendChild(underline);
+            }
+    
+            // Repeat typing effect every 3 seconds, but keep text on screen after animating
+            typeEffect();
+            setInterval(() => {
+                typeEffect();
+            }, 5000); // Re-run the typing effect every 3 seconds
+        });
+    </script>
+    
+</body>
+</html>

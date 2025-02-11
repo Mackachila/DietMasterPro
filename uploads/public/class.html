@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Class Platform</title>
+  <link rel="stylesheet" href="class.css">
+</head>
+<body>
+  <div class="video-container" id="videoContainer">
+    <div class="video-header">
+      <button id="minimizeBtn">_</button>
+      <button id="maximizeBtn">⬜</button>
+      <button id="closeBtn">X</button>
+    </div>
+    <video id="localVideo" autoplay muted></video>
+  </div>
+
+  <button id="startVideoButton">Start Video</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="class.js"></script>
+</body>
+</html>

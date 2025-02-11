@@ -1,0 +1,106 @@
+
+
+/* Form Styling */
+#scheduleMealForm{
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+    min-width: 400px;
+    margin: auto;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+#scheduleMealForm label {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#scheduleMealForm input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+}
+
+#mealbutton {
+    background-color: lightseagreen;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px;
+    width: 100%;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#mealbutton:hover {
+    background-color: rgb(6, 72, 68);
+    color: white;
+}
+
+/* Meal List */
+#mealList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    
+}
+
+#mealList li {
+    background-color: #1e1e1e;
+    padding: 12px;
+    margin: 10px auto;
+    min-width: 400px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Delete Button */
+#mealList li button {
+    background-color: rgb(109, 25, 25);
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#mealList li button:hover {
+    background-color: rgb(251, 154, 154);
+}
+
+/* Responsive Design */
+@media (max-width: 560px) {
+    #scheduleMealForm {
+        max-width: 90%;
+    }
+
+    #mealList li {
+        max-width: 90%;
+        font-size: 14px;
+    }
+
+    #scheduleMealForm{
+        gap: 1px;
+        display: flex;
+        flex-direction: column;
+        min-width: 400px;
+    }
+}
+

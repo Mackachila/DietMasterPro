@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Cliant page</title>
+  <link rel="stylesheet" type="text/css" href="./workdashboard.css">
+  <!-- <script defer src="./workdashboard.js"></script> -->
+  <script defer src="./payments.js"></script>
+  <script defer src="./specification.js"></script>
+  <script src="websocket.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <link rel="icon" type="image/png" href="currency.png">
+  
+  <style>
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: none;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background-color: #ccc;
+    }
+
+    .error, .success {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+</style>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.getElementById('sendButton').addEventListener('click', () => {
+        const message = document.getElementById('messageInput').value;
+        broadcastMessage(message);
+      });
+    });
+  </script>
+  </head>
+<body>
+  
+  <div class="topnav">
+    <a style="color: #2196F3; cursor: pointer;" onclick="toggleProfile()">Profile</a>
+    <a href="membership.html">Membership</a>
+      <a href="myjobs.html">My jobs</a>
+      <a href="#">Join our Academy</a>
+              <div class="notification-container">
+          <i class="material-icons" style="padding: 9px;"></i>
+          <i class="material-icons"></i>
+          </div>
+
+      </div>
+      <div class="profile-section" id="profileSection">
+        <div class="usericon" id="usericon">
+          <img src="user2.png" alt="Profile" width="40" height="40"><br>
+        My Account
+      </div>
+      <div class="userdetails" id="userdetails">
+        <b  id ="username-display3"></b><br>
+        <div class="separatelines" id="separatelines"></div>
+           <br>
+           <button id="logout-button3">Logout</button><br>
+      </div>
+    </div>
+    
+    <div class="overlay" onclick="hideProfile()"></div>
+
+<div class="body">
+  <div id="notification-container"></div><br>
+  <h1>Diet Master</h1>
+  <a href="maccount2.html">Deposit Update</a>
+  <p>Post your question. Remember to include all the rules and deadline</p>
+
+  <h2>Use the form bellow to post the job.</h2>
+  
+  <br>
+  <div id="jobCards"></div>
+    </var>
+    <section id="jobposting">
+      <div id="jobbidingid"></div>
+    <h3>Do you have any job to be done? Post it here.</h3>
+    <form id="jobForm">
+      <label for="typeofjob"><b>Type of Job:</b></label>
+      <input type="text" id="typeofjob" name="typeofjob" placeholder="e.g Copy writing job or web design job e.t.c" style="width: 95%; padding: 7px; font-size: 120%"><br>
+      Note: <b style="color: red;">You will not be able to edit this job after you post it. Be keen before you post</b>
+      <br>
+      <br>
+      <label for="description"><b>Question and requirements:</b></label><br>
+      <textarea id="description" name="description" style="width: 95%; padding: 7px; font-size: 120%; height: 20vh; "></textarea><br>
+      Note: <b style="color: red;">You will not be able to edit this job after you post it. Be keen before you post</b>
+      <br>
+      <br>
+      <label for="deadline"><b>Submission Deadline:</b></label>
+      <input type="datetime-local" id="deadline" name="deadline" placeholder="e.g 31/12/2025" style="width: 95%; padding: 7px; font-size: 120%"><br>
+      Note: <b style="color: red;">You will not be able to edit this job after you post it. Be keen before you post</b>
+      <br>
+      <br>
+      <label for="amount"><b>Amount you will pay for this job:</b></label><br>
+      <input type="number" id="amount" name="amount" placeholder="Amount in KES" style="width: 95%; padding: 7px; font-size: 120%"><br>
+      Note: <b style="color: red;">You will not be able to edit this job after you post it. Be keen before you post</b>
+      <br>
+      <br>
+      <button type="submit" id="jobpostingbutton">Post this job now</button><br><br>
+    </form>
+
+
+    <input type="text" id="messageInput" value="New job alert... Hi freelancer, a new Job has been posted.">
+  <button id="sendButton">Send Message</button>
+
+  <!-- New Section for Specific Notifications -->
+<section id="specificNotificationSection">
+  <h3>Send Specific Notification</h3>
+  <form id="specificNotificationForm">
+    <label for="specificUsernameInput"><b>Username:</b></label>
+    <input type="text" id="specificUsernameInput" placeholder="Enter username" style="width: 95%; padding: 7px; font-size: 120%"><br><br>
+
+    <label for="specificMessageInput"><b>Message:</b></label>
+    <textarea id="specificMessageInput" placeholder="Enter specific notification" style="width: 95%; padding: 7px; font-size: 120%"></textarea><br><br>
+
+    <button type="button" id="sendSpecificButton">Send Specific Notification</button><br><br>
+  </form>
+</section>
+
+<h1>General Notifications</h1>
+<div class="form-container">
+  <h2>Send General Notification</h2>
+  <form id="generalNotificationForm">
+      <label for="message">Notification Message:</label><br>
+      <textarea id="message2" name="message2" placeholder="Enter your notification..."></textarea><br><br>
+      <button type="submit" id="submitButton">Send Notification</button>
+      <div id="responseMessage"></div>
+  </form>
+</div>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+  </section>
+
+<h1>General announcements</h1>
+    <form id="job-form">
+        <input type="text" id="title" placeholder="Title" required>
+        <textarea id="announcementdescription" placeholder="Announcement Description" required></textarea>
+        <button type="submit">Post Job</button>
+    </form>
+    <p id="response-message"></p>
+    <script src="/socket.io/socket.io.js"></script>
+  </section>
+
+  </div>
+<div class="footer">
+  <div class="footer-section">
+    <h3>Contact Us</h3>
+    <p>Email: info@example.com</p>
+    <p>Phone: 123-456-7890</p>
+  </div>
+  <div class="footer-section">
+    <h3>Follow Us</h3>
+    <p>Twitter: @example</p>
+    <p>Facebook: /example</p>
+  </div>
+</div>
+<div id="bottomsecction"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch('bottom.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('bottomsecction').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading navbar:', error));
+  });
+</script>
+
+<script>
+  document.getElementById('job-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const announcementdescription = document.getElementById('announcementdescription').value;
+      const responseMessage = document.getElementById('response-message');
+
+      fetch('/api/post-job', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ title, announcementdescription })
+      })
+      .then(response => response.json())
+      .then(data => {
+          responseMessage.textContent = data.message;
+          if (data.error) {
+              responseMessage.style.color = 'red';
+          } else {
+              responseMessage.style.color = 'green';
+              document.getElementById('job-form').reset();
+          }
+      })
+      .catch(err => {
+          responseMessage.textContent = 'Error posting job.';
+          responseMessage.style.color = 'red';
+      });
+  });
+</script>
+</body>
+</html>

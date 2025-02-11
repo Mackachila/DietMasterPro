@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- you need to /check-registration log we are loading-->
+<!-- live -->
+    <title>account</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+       /* Card styles */
+ #confirmation-card{
+    background-color: black;
+    padding: 14px;
+ }      
+.card-container {
+  
+  background: #343434;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px auto;
+    width: 100%;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: lightseagreen;
+    margin-bottom: 16px;
+    border-bottom: solid 2pt rgb(34, 35, 35);
+    padding-bottom: 10px;
+}
+
+#details-list .detail-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #343434;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: white;
+    margin: 8px 0;
+    box-shadow: 0 2px 4px rgb(34, 35, 35);
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background: lightseagreen;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  padding: 10px 20px;
+  background: rgb(129, 4, 4);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: rgb(2, 251, 234);
+  color: black;
+}
+
+.cancel-btn:hover {
+  background: red;
+  color: black;
+}
+/* Responsive design */
+@media (max-width: 600px) {
+  .card-container {
+    padding: 10px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .card-container {
+    padding: 10px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+
+/* floating card styles */
+
+  
+.floating-card {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  /* color: white; */
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.5s forwards;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.floating-card.error {
+  background-color: #f1d8d5;
+  color: red;
+}
+
+.floating-card.success {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.card-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.card-message {
+  flex-grow: 1;
+}
+
+.close-btn {
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  padding-left: 10px;
+}
+
+.close-btn:hover {
+  color: #ccc;
+}
+
+/* Animation for card appearance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Loading Overlay */
+.loading-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.612);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.spinner {
+  border: 4px solid white;
+  border-top: 4px solid black;
+  border-radius: 50%;
+  width: 40px;  
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+    </style>
+    <!-- <link rel="stylesheet" href="styles.css"> join class make payment-->
+</head>
+<body>
+<!-- 
+  <div id="loading-overlay" class="loading-overlay">Please wait...
+    <div class="spinner"></div>
+  </div> -->
+
+<button id="scrollToTopBtn" class="scroll-to-top-btn" onclick="scrollToTop()">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M12 5l7 7h-4v8h-6v-8h-4z" fill="white"/>
+  </svg>
+</button>
+<div id="loading-overlay" class="loading-overlay">Please wait...
+  <div class="spinner"></div>
+</div>
+
+
+    <div id="scrollProgress"></div>
+
+
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- <img src="mtslogo3.png" alt="MTS" class="navbar-logo"> -->
+        <div class="navbar-logo">
+            <div class="logo-container">
+                <img src="logo.png" alt="Diet Suggestion System Logo" class="logoimage">
+            </div>DietMaster</div>
+            <!-- <li class="dropdown">
+                <a href="#more">Classes <span class="arrow"><i class="fas fa-chevron-down"></i></span></a>
+                <ul class="dropdown-menu" id="registration-dropdown">
+                  <li><a href="#" data-course="Front-End web design">Front-End web design</a></li>
+                  <li><a href="#" data-course="Back-End web Skills">Back-End web development</a></li>
+                  <li><a href="#" data-course="Full-Stack web development">Full-Stack web development</a></li>
+                  <li><a href="#" data-course="Software Engineering Classes">Software Engineering</a></li>
+                  <li><a href="#" data-course="Computer Packages Classes">Computer Packages</a></li>
+                  <li><a href="#" data-course="Cyber attendant">Cyber attendant</a></li>
+                </ul>
+            </li> -->
+               <li>
+                <a href="joinclasses.html" id="signupbutton">Invite friends</a>
+            </li>
+            
+        </ul>
+        
+        <button id="toggleDashboard" class="dashboard-toggle">☰</button>
+    </nav>
+
+    <!-- Overlay for mobile view -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Information Dashboard -->
+    <!-- Information Dashboard -->
+<aside id="dashboard" class="dashboard">
+    <button id="closeDashboard" class="close-button" style="color: white;">X</button>
+    
+    <div class="dashboard-title">
+        <!-- <img src="user6.png" alt="Profile" class="title-profile-image"> -->
+        <!-- <img src="user6.png" alt="Profile" class="title-profile-image" id="thumbnailImage" style="cursor: pointer;"> -->
+        <i class="fas fa-user" style="font-size: x-large;"></i><h1 class="dashboard-heading" id="dashboard-heading">Loading...</h1>
+        
+      </div><br>
+    <!-- New Close Button
+    <img src="user6.png" alt="Profile" class="profile-image"> dashboard-content -->
+    
+    <div class="dashboard-content">
+           
+                        <!-- Skills Section -->
+        <div class="section">
+          <div class="services" id="services">
+                <button class="section2-toggle" id="toggleServices" style="outline: none;">
+                    <i class="fas fa-code"></i>Classes <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                </button>
+                <div class="section-content" id="servicesContent">
+                  <li><a href="#" data-course="Front-End web design">Front-End web design</a></li>
+                  <li><a href="#" data-course="Back-End web Skills">Back-End web development</a></li>
+                  <li><a href="#" data-course="Full-Stack web development">Full-Stack web development</a></li>
+                  <li><a href="#" data-course="Software Engineering Classes">Software Engineering</a></li>
+                  <li><a href="#" data-course="Computer Packages Classes">Computer Packages</a></li>
+                  <li><a href="#" data-course="Cyber attendant">Cyber attendant</a></li>
+                </div>
+
+
+                <div class="section" style="color: white;">
+                    <a href="#"><button class="section2-toggle" id="toggleskillssection">
+                        <i class="fas fa-phone-alt"></i> Web Design
+                    </button></a>
+                    </div>
+                <div class="section">
+                    <a href="#"><button class="section2-toggle" id="toggleprojectsection">
+                        <i class="fas fa-phone-alt"></i> Software Engineering
+                    </button></a>
+                    </div>
+                
+                <div class="section">
+                    <a href="#"><button class="section2-toggle" id="toggleaboutsection">
+                        <i class="fas fa-phone-alt"></i> IT Support
+                    </button></a>
+                    </div>
+                    <br>
+            <h2 style="color: black; font-size: large;">Your info</h2>
+        </div>
+                  
+        
+        <!-- Contact Section -->
+        <div class="section">
+            <button class="section-toggle" id="toggleContact">
+                <i class="fas fa-phone-alt"></i> Contact <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="section-content" id="contactContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+    
+        <!-- Email Section -->
+        <div class="section">
+            <button class="section-toggle" id="toggleEmail">
+                <i class="fas fa-envelope"></i> Email <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="section-content" id="emailContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+
+        <div class="section">
+          <button class="section-toggle" id="togglePayments">
+          <i class="fa fa-pen"></i>Update details <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="tutionpayment">
+            <p>Update</p>
+        </div>
+                    
+      </div>
+
+        <div class="section">
+          <button class="section-toggle" id="togglePayments">
+          <i class="fa fa-dollar"></i>Premium <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="tutionpayment">
+            <p>Make payment</p>
+        </div>
+          <div class="section-content" id="coursepaymentdetails">
+              <p>Loading...</p>
+          </div>
+          
+      </div>
+
+        <div class="section">
+        <button class="section-toggle" id="toggleSkills">
+          <i class="fas fa-thumbs-up"></i> Liked Meals <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+      </button>
+      <div class="section-content" id="skillsContent">
+          <p>Loading...</p>
+      </div>
+    </div>
+<!-- LinkedIn -->
+        <div class="section">
+            <button class="section-toggle" id="togglelinkedin">
+                <i class="fa fa-exclamation-triangle"></i> Alergies <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="section-content" id="linkedinContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+    <!-- GitHub -->
+        <div class="section">
+            <button class="section-toggle" id="togglegithub">
+                <i class="fa fa-calendar-day"></i> Today <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="section-content" id="githubContent">
+                <p>Loading...</p>
+            </div>
+        </div>
+        <div class="section">
+          <button class="section-toggle" id="toggleCompletedservices">
+              <i class="fa fa-calendar-week"></i> Week <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="completedServicesContent">
+              <p>Loading...</p>
+          </div>
+      </div>
+        <!-- Abilities Section -->
+        <div class="section">
+            <button class="section-toggle" id="toggleAbilities">
+                <i class="fa fa-clapperboard"></i> Results <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+            </button>
+            <div class="section-content" id="abilitiesContent">
+                <p>Loading...</p>
+            </div><br>
+            <button class="logout" id="logout"><i class="fas fa-power-off"></i> Log Out</button>
+        </div>
+    </div>
+    
+    
+</aside>
+
+
+    <!-- Main Content -->
+    <main class="content"><br><br><br>
+       
+
+        <div id="confirmation-card">
+            <div class="card-container">
+              <h2 class="card-title">You are about to update below details for your child</h2>
+              <div id="details-list"></div>
+              <div class="card-actions">
+                <button id="submit-details" class="submit-btn">Confirm and Update</button>
+                <button id="cancel-details" class="cancel-btn">Cancel</button>
+              </div>
+            </div>
+          </div>
+          
+          
+        
+          <section class="contact-section" id="contact-section">
+            <div class="contact-container">
+              <div class="contact-header">
+                <h2>Contact Me</h2>
+                <p>Let's create something amazing together!</p>
+              </div>
+              <form class="contact-form" id="contact_form">
+                <div class="input-group">
+                  <input type="text" id="contact_name" placeholder="Name">
+                  <input type="text" id="contact_email" placeholder="Email">
+                </div>
+                <textarea id="contact_message" placeholder="Your Message" rows="5"></textarea>
+                <button type="submit" class="submit-button">
+                  <span>Send Message</span>
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </section>
+          
+
+        <section class="chat-section">
+            <div class="chat-button" id="chatButton">
+                <i class="fa fa-comments"></i> Get Help
+            </div>
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <h3>Mackachila Chat Bot</h3>
+                    <button id="closeChat" class="close-chat-btn">&times;</button>
+                </div>
+                <div class="chat-body">
+                    <div class="chat-message left">
+                        <div class="chat-bubble">
+                            <p>Hello! I am just but a chat Bot Build by Jared Mackachila, I may not be able to answer all your questions correctly but I will try my best. How can I assist you today?</p>
+                        </div>
+                    </div>
+                    <!-- User and support messages will appear here -->
+                </div>
+                <div class="chat-footer">
+                    <input type="text" id="chatInput" placeholder="Type your message..." />
+                    <button id="sendChat" class="send-chat-btn">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Additional sections like About, Projects, Blog, etc. -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>About Mackachila</h3>
+            <p>Mackachila (Real name: Jared Odhiambo) is an experienced Full-Stack web developer and a programmer who has vast knowlege in so many languages including: Java, JavaScript, Python, Node.js, React.js, SQL, Visual Basic, CSS, HTML and good knowledge in Database systems.</p>
+          </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#courses">Projects</a></li>
+              <li><a href="#admissions">Qualifications</a></li>
+              <li><a href="#contact">Abilities</a></li>
+              <li><a href="#blog">About</a></li>
+              <li><a href="#events">Contact</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Services</h3>
+            <ul class="footer-links">
+              <li><a href="#l">Web Development</a></li>
+              <li><a href="#l">Software Engineering</a></li>
+              <li><a href="#l">Networking</a></li>
+              <li><a href="#l">Cyber Security</a></li>
+              <li><a href="#l">Computer Training</a></li>
+              <li><a href="#l">IT Support</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Search the Site</h3>
+            <form class="footer-search-form">
+              <input type="text" class="footer-search-input" placeholder="Search..." aria-label="Search">
+              <button type="submit" class="footer-search-button"><i class="fas fa-search"></i></button>
+            </form>
+            <h3>Follow Us</h3>
+            <ul class="social-media-links">
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Jared Mackachila. All Rights Reserved.</p>
+        </div>
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="contact.js"></script>
+<script>
+
+const loadingOverlay = document.getElementById("loading-overlay");
+
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const allergies = params.get('allergies');
+  const health = params.get('health');
+  const favorites = params.get('favorites');
+  const age = params.get('age');
+
+  // Check if the parameters exist
+  if (!allergies || !health || !favorites || !age) {
+    window.location.href = '/dashboard'; // Redirect to the dashboard if data is missing
+    return;
+  }
+
+  const detailsList = document.getElementById('details-list');
+  detailsList.innerHTML = `
+    ${allergies ? `<div class="detail-card">Allergies:<b>${allergies}</b></div>` : ''}
+    ${health ? `<div class="detail-card">Health Conditions:<b> ${health}</b></div>` : ''}
+    ${favorites ? `<div class="detail-card">Favorite Meals:<b> ${favorites}</b></div>` : ''}
+    ${age ? `<div class="detail-card">Child Age:<b> ${age}</b></div>` : ''}
+  `;
+  
+  // Submit details and send to the server
+  document.getElementById('submit-details').addEventListener('click', async () => {
+    
+    showLoadingSpinner();
+    try {
+      const response = await fetch('/update-details', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ allergies, health, favorites, age })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        displayFloatingCard(data.message, 'success');
+        setTimeout(() => {
+          window.history.back();
+  }, 5000);
+        // Go back to the previous page
+      // hideLoadingSpinner();
+        // alert(data.message); // Show success message
+      } else {
+        displayFloatingCard(data.message, 'error');
+        // alert(data.error); // Show error message
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // alert('An error occurred while submitting the details. Please try again later.');
+      displayFloatingCard(data.message, 'error');
+    }
+    hideLoadingSpinner();
+  });
+
+  // Handle cancel button (clear URL parameters and go back)
+  document.getElementById('cancel-details').addEventListener('click', () => {
+    alert('Submission Cancelled!');
+    const urlWithoutParams = window.location.origin + window.location.pathname;
+    window.history.replaceState(null, '', urlWithoutParams); // Clear URL parameters
+    window.history.back(); // Go back to the previous page
+  });
+});
+
+
+
+// loading spinner
+
+function showLoadingSpinner() {
+    loadingOverlay.classList.add('active');
+  }
+  
+  function hideLoadingSpinner() {
+    loadingOverlay.classList.remove('active');
+  }
+
+function displayFloatingCard(message, type) {
+  const card = document.createElement('div');
+  card.className = `floating-card ${type}`;
+  
+  const icon = document.createElement('img');
+  icon.className = 'card-icon';
+  
+  if (type === 'error') {
+    icon.src = 'error.png';  // Assuming error.png is in the same directory
+  } else if (type === 'success') {
+    icon.src = 'tick.png';  // Assuming success.png is in the same directory
+  }
+
+  const text = document.createElement('span');
+  text.className = 'card-message';
+  text.textContent = message;
+
+  const closeBtn = document.createElement('span');
+  closeBtn.className = 'close-btn';
+  closeBtn.textContent = '✕';
+  closeBtn.onclick = () => {
+    card.remove();
+  };
+
+  card.appendChild(icon);
+  card.appendChild(text);
+  card.appendChild(closeBtn);
+  
+  document.body.appendChild(card);
+
+  // Automatically remove the card after 3 seconds
+  setTimeout(() => {
+    card.remove();
+  }, 4000);
+}
+
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- /notification-diet need to /container-schedule your log we are loading-overlay-->
+<!-- live -->
+    <title>account</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script> 
+    <!-- <link rel="container" href="styles.css"> join recommend make recommend-referral-card-->
+   <style>
+    #nutritionAnalysis {
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    color: #333;
+}
+#nutritionAnalysis p {
+    margin: 8px 0;
+}
+#nutritionAnalysis p strong {
+    color: #007bff;
+}
+#nutritionAnalysisContainer {
+    padding: 20px;
+}
+#analysisMessage {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 20px;
+}
+.chat-btn {
+    background-color: rgb(2, 27, 26);
+    color: white;
+    padding: 10px 20px;
+    /* border: none; */
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: solid lightseagreen 1pt;
+    letter-spacing: 0.2rem;
+}
+button:hover {
+    background-color: #0a1016;
+    color: white;
+}
+
+   </style>
+  </head>
+<body>
+
+<button id="scrollToTopBtn" class="scroll-to-top-btn" onclick="scrollToTop()">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M12 5l7 7h-4v8h-6v-8h-4z" fill="white"/>
+  </svg>
+</button>
+<div id="loading-overlay" class="loading-overlay">Please wait...
+  <div class="spinner"></div>
+</div>
+
+
+    <div id="scrollProgress"></div>
+    <div id="navbarContainer"></div>
+
+    <!-- logout for mobile view -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Information Dashboard -->
+    <!-- Information Dashboard -->
+
+    <div class="mobile-nav" id="mobileNav">
+
+
+      <div class="section">
+          <button class="section-togglee" id="toggleContactt" data-target="contactContentt">
+              <i class="fas fa-phone-alt"></i> Contact <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="contactContentt">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="toggleEmaill" data-target="emailContentt">
+              <i class="fas fa-envelope"></i> Email <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="emailContentt">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="togglePaymentss" data-target="tutionpaymentt">
+              <i class="fa fa-pen"></i> Update details <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="tutionpaymentt">
+              <p>Update</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="togglePremiumm" data-target="premiumUpgradee">
+              <i class="fa fa-dollar"></i> Premium <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="premiumUpgradee">
+              <p>Upgrade</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="toggleSkillss" data-target="favoritemealsContentt">
+              <i class="fas fa-thumbs-up"></i> Favorite Meals <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="favoritemealsContentt">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="togglelinkedinn" data-target="allergiesContentt">
+              <i class="fa fa-exclamation-triangle" style="color: red;"></i> Allergies <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="allergiesContentt">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="togglegithubb" data-target="healthconditionContentt">
+              <i class="fas fa-medkit"></i> Health Conditions <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="healthconditionContentt">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="toggleCompletedservicess" data-target="ageContentt">
+              <i class="fa fa-calendar-week"></i> Child Age <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="ageContentt">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="toggleAbilitiess" data-target="abilitiesContentt">
+              <i class="fa fa-clapperboard"></i> Results <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="abilitiesContentt">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-togglee" id="toggleCleardataa" data-target="dataclearingg">
+              <i class="fas fa-trash" style="color: red;"></i> Clear data <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-contentt" id="dataclearingg">
+              <p>See what will be deleted</p>
+          </div>
+      </div>
+      
+      <br>
+      <button class="logout" id="logout"><i class="fas fa-power-off"></i> Log Out</button><br><br>
+  </div>
+  
+<aside id="dashboard" class="dashboard">
+    <!-- <button id="closeDashboard" class="close-button" style="color: white;">X</button> -->
+    
+    <div class="dashboard-title">
+        <i class="fas fa-user" style="font-size: x-large;"></i><h1 class="dashboard-heading" id="dashboard-heading">Loading...</h1>
+        
+      </div><br>
+    
+    <div class="dashboard-content">
+           
+                        <!-- Skills Section -->
+                <!-- Contact Section -->
+        <div class="section">
+          <button class="section-toggle" id="toggleContact" data-target="contactContent">
+              <i class="fas fa-phone-alt"></i> Contact <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="contactContent">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <!-- Email Section -->
+      <div class="section">
+          <button class="section-toggle" id="toggleEmail" data-target="emailContent">
+              <i class="fas fa-envelope"></i> Email <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="emailContent">
+              <p>Loading...</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="togglePayments" data-target="tutionpayment">
+              <i class="fa fa-pen"></i>Update details <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="tutionpayment">
+              <p>Update</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="togglePremium" data-target="premiumUpgrade">
+              <i class="fa fa-dollar"></i>Premium <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="premiumUpgrade">
+              <p>Upgrade</p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="toggleSkills" data-target="favoritemealsContent">
+              <i class="fas fa-thumbs-up"></i> Favorite Meals <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="favoritemealsContent">
+              <p></p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="togglelinkedin" data-target="allergiesContent">
+              <i class="fa fa-exclamation-triangle" style="color: red;"></i> Alergies <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="allergiesContent">
+              <p></p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="togglegithub" data-target="healthconditionContent">
+              <i class="fas fa-medkit"></i> Health Conditions <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="healthconditionContent">
+              <p></p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="toggleCompletedservices" data-target="ageContent">
+              <i class="fa fa-calendar-week"></i> Child Age <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="ageContent">
+              <p></p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="toggleAbilities" data-target="abilitiesContent">
+              <i class="fa fa-clapperboard"></i> Results <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="abilitiesContent">
+              <p></p>
+          </div>
+      </div>
+      
+      <div class="section">
+          <button class="section-toggle" id="toggleCleardata" data-target="dataclearing">
+              <i class="fas fa-trash" style="color: red;"></i> Clear data <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+          </button>
+          <div class="section-content" id="dataclearing">
+              <p>See what will be deleted</p>
+          </div>
+      </div>
+      
+            <br>
+            <button class="logout" id="logout"><i class="fas fa-power-off"></i> Log Out</button>
+        </div><br><br><br><br>
+    </div>
+    
+    
+</aside>
+
+
+    <!-- Main Content -->
+    <main class="content">
+       <!-- <div class="indivi">
+    <div class="notification-icon">🔔<span class="notification-count">0</span></div>
+  </div>
+    
+    <div class="notifications2-container">
+      <div class="notifications-header">
+          <b>Notifications</b>
+      </div>
+      <div class="notifications-body"></div>
+      
+  </div> -->
+
+        <div id="payment-popup" class="popup hidden">
+          <div class="popup-form">
+            <button class="closse-btn" id="close-payment-form">&times;</button>
+            <h2 class="form-header">Update Child's Details</h2>
+            <form id="payment-form">
+              <!-- Allergies -->
+              <label for="payment_type">Does your child have any allergies?</label>
+              <select id="payment_type" name="payment_type" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
+              </select>
+        
+              <div id="alergy_list_section" style="display: none;">
+                <label for="allergy_list">List the allergies separated with commas (,):</label>
+                <input type="text" id="allergy_list" placeholder="e.g., red_meat, pork, milk etc" required/>
+              </div>
+        
+              <!-- Health Conditions
+              <label for="health_conditions">Does your child have any health conditions?</label>
+              <select id="health_conditions" name="health_conditions" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
+              </select>
+         -->
+              <!-- Health Conditions (updated to allow multiple selections) -->
+<label for="health_conditions">Does your child have any health conditions?</label>
+<select id="health_conditions" name="health_conditions" required>
+  <option value="" disabled selected>Select one</option>
+  <option value="yes">YES</option>
+  <option value="no">NO</option>
+</select>
+
+<div id="health_list_section" style="display: none;">
+  <label for="health_list">Select health conditions:</label>
+  <div id="health_conditions_list">
+    <!-- Dynamically generate checkboxes from the provided health conditions -->
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Obesity" id="condition1">
+      <label for="condition1">Obesity</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Sugar" id="condition2">
+      <label for="condition2">Sugar</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Diabetes" id="condition3">
+      <label for="condition3">Diabetes</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Heart-Disease" id="condition4">
+      <label for="condition4">Heart Disease</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Asthma" id="condition5">
+      <label for="condition5">Asthma</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Celiac" id="condition6">
+      <label for="condition6">Celiac</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Allergy" id="condition7">
+      <label for="condition7">Allergy</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="High-Blood-Pressure" id="condition8">
+      <label for="condition8">High Blood Pressure</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Cholesterol" id="condition9">
+      <label for="condition9">Cholesterol</label>
+    </div>
+    <div class="health-condition">
+      <input type="checkbox" name="health_condition" value="Thyroid-Disease" id="condition10">
+      <label for="condition10">Thyroid Disease</label>
+    </div>
+  </div>
+</div>
+
+        
+              <!-- Favorite Meals -->
+              <label for="payment_mode">Is there your child's favorite meal?</label>
+              <select id="payment_mode" name="payment_mode" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
+              </select>
+        
+              <div id="favorite_list_section" style="display: none;">
+                <label for="favorite_list">What are the favorite meals? Separate with commas (,):</label>
+                <input type="text" id="favorite_list" placeholder="e.g., bananas, red-meat, etc" required>
+              </div>
+        <!-- Favorite Meals -->
+        <label for="payment_mode">What is the age of your child?</label>
+        <select id="child_age" name="child_age" required>
+          <option value="" disabled selected>Select age of your cild</option>
+          <option value="Less than 1 Year old">Less than 1 Year old</option>
+          <option value="1 Year old">1 Year old</option>
+          <option value="2 Years old">2 Years old</option>
+          <option value="3 Years old">3 Years old</option>
+          <option value="4 Years old">4 Years old</option>
+          <option value="5 Years old">5 Years old</option>
+        </select><br><br>
+
+              <button type="submit" class="submitt-btn">Continue</button><br><br>
+
+              <div id="data-error" class="data-error"></div>
+            </form>
+          </div>
+        </div>
+        
+
+        <!-- Premeum payment form -->
+
+        <div id="premium-popup" class="popup">
+          <div class="popup-form">
+            <button class="closse-btn" id="close-premium-form">&times;</button>
+            <h2 class="form-header">Premium Subscription</h2>
+            <form id="premium-form">
+              
+        
+              <label>Select premium type:</label>
+              <select id="premium_type" name="premium_type" required>
+                <option value="" disabled selected>Select premium type</option>
+                <option value="Monthly">Monthy Subscription</option>
+                <option value="Yearly">Yearly Subscription</option>
+              </select>
+        
+              <p id="balance_label" style="color: black; display: none;"><b><span id="balance_amount">0</span></b>.</p>
+                
+              <label>Select Mode of payment:</label>
+              <select id="premium_mode" name="premium_mode" required>
+                <option value="" disabled selected>Mode of payment</option>
+                <option value="M-Pesa">M-Pesa</option>
+                <option value="paypal" disabled>PayPal (Coming Soon)</option>
+              </select>
+              <br><br>
+        
+              <button type="submit" class="submitt-btn">Next</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- deletion popup -->
+
+        <div id="deletion-popup" class="popup">
+          <div class="popup-form">
+            <button class="closse-btn" id="close-deletion-form">&times;</button>
+            <h2 class="form-header">This will Parmanently delete:</h2>
+            <ol>
+              <li>Your health conditions data</li>
+              <li>Your favorite meals data</li>
+              <li>Your allergies data</li>
+              <li>Your age data</li>
+               </ol>
+               <p style="color: lightseagreen;">Use this feature if you want to entirely update your data or if you want to just delete. You can re-update later</p>
+
+               <h4 style="color: red;">Are you sure you want to delete?</h4><br>
+            <form id="deletion-form">
+              
+              <button class="submitt-btn" style="background-color: maroon;" id="data-deletion-button">Delete</button><br><br>
+              Click <b>X</b> on the top right to <b style="color: red;">Cancel</b>
+              <!-- <button class="submitt-btn" id="canceldata-deletion-button">Cancel</button> -->
+            </form>
+          </div>
+        </div>
+<!-- Reccomend error -->
+<div id="recommend-floating-card" class="hidden">
+  <b id="close-card-btn">X</b>
+  <img src="error.png" alt="Error" class="error-image">
+  <p id="recommend-floating-card-message"></p>
+</div>
+
+        <div id="funny-section-wrapper">
+          <div id="date-today"></div>
+          <b style="font-size: 20px;">Hello 👋<b id="timingusername"> Loading...</b></b>,<div id="time-message">Loading...</div>
+          <!-- <h2 class="funny-section-heading">Welcome to DietMasetr! We are here for your Kid's Diet</h2> -->
+          <div id="funny-section-card-container">
+            <!-- Card 1 -->
+            <div class="funny-card-item">
+              <div class="funny-card-banner">
+                <span class="funny-card-rope"></span>Breakfast
+              </div>
+              <img src="breakfast.jpg" alt="Meal Image" class="funny-card-image">
+              <div class="funny-card-body">
+                <h1 class="funny-card-title">Breakfast</h1>
+                <p class="funny-card-description">Start your kid's day with delicious and healthy breakfast! Packed with nutrients for energy and growth.</p>
+                <p class="funny-card-description">See what your kid should have for Breakfast today.</p>
+                <button class="funny-card-button" id="breakfast-button">Recommend right now</button>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="funny-card-item">
+              <div class="funny-card-banner">
+                <span class="funny-card-rope"></span>Lunch
+              </div>
+              <img src="lunch.jpg" alt="Meal Image" class="funny-card-image">
+              <div class="funny-card-body">
+                <h1 class="funny-card-title">Lunch</h1>
+                <p class="funny-card-description">A tasty and colorful veggie wrap that kids love! Perfect for a balanced lunch at school or home.</p>
+                <p class="funny-card-description">Recommend what your kid should have for Lunch today.</p>
+                <button class="funny-card-button" id="lunch-button">Recommend right now</button>
+              </div>
+            </div>
+
+            <div class="funny-card-item">
+              <div class="funny-card-banner">
+                <span class="funny-card-rope"></span>Supper
+              </div>
+              <img src="supper.jpg" alt="Meal Image" class="funny-card-image">
+              <div class="funny-card-body">
+                <h3 class="funny-card-title">Supper</h3>
+                <p class="funny-card-description">A tasty and colorful veggie wrap that kids love! Perfect for a balanced lunch at school or home.</p>
+                <p class="funny-card-description">Recommend what your kid should have for Supper today.</p>
+                <button class="funny-card-button" id="supper-button">Recommend right now</button>
+              </div>
+            </div>
+            <!-- Additional cards can go here -->
+          </div>
+        </div>
+       
+        <section id="recommendationresults">
+        <div class="recommendationcontainer">
+         <b style="color: transparent"> Below is your recomendation for that meal</b><br>
+               
+          <div id="recommendations-section" class="recommendations">
+            <!-- Recommendations will appear here as animated cards -->
+          </div>
+        </div>
+      </section>
+      
+      <section id="analysis-section">
+        <!-- Chart Container -->
+<div id="chartContainer">
+  <canvas id="mealChart"></canvas>
+</div>
+
+<br>
+<div>
+  <button id="weeklyBtn" class="chat-btn">W/D</button>
+  <button id="monthlyBtn" class="chat-btn">MM</button>
+  <button id="yearlyBtn" class="chat-btn">YR</button>
+</div>
+<!-- Nutritional Analysis Container (below the chart) -->
+<div id="nutritionAnalysisContainer">
+  <p id="analysisMessage" style="display: none;">Your meal analysis will show here</p>
+  <div id="nutritionAnalysis" style="background-color: #333;"></div>
+  
+</div>
+
+
+
+    </section>
+        
+
+    
+          <section class="contact-section" id="contact-section">
+            <div class="contact-container">
+              <div class="contact-header">
+                <h2>Contact Me</h2>
+                <p>Let's create something amazing together!</p>
+              </div>
+              <form class="contact-form" id="contact_form">
+                <div class="input-group">
+                  <input type="text" id="contact_name" placeholder="Name">
+                  <input type="text" id="contact_email" placeholder="Email">
+                </div>
+                <textarea id="contact_message" placeholder="Your Message" rows="5"></textarea>
+                <button type="submit" class="submit-button">
+                  <span>Send Message</span>
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </section>
+          
+
+        <section class="chat-section">
+            <div class="chat-button" id="chatButton">
+                <i class="fa fa-comments"></i> Get Help
+            </div>
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <h3>Mackachila Chat Bot</h3>
+                    <button id="closeChat" class="close-chat-btn">&times;</button>
+                </div>
+                <div class="chat-body">
+                    <div class="chat-message left">
+                        <div class="chat-bubble">
+                            <p>Hello! I am just but a chat Bot Build by Jared Mackachila, I may not be able to answer all your questions correctly but I will try my best. How can I assist you today?</p>
+                        </div>
+                    </div>
+                    <!-- User and support messages will appear here -->
+                </div>
+                <div class="chat-footer">
+                    <input type="text" id="chatInput" placeholder="Type your message..." />
+                    <button id="sendChat" class="send-chat-btn">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Additional sections like log out, Projects, Blog, etc. -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>About Mackachila</h3>
+            <p>Mackachila (Real name: Jared Odhiambo) is an experienced Full-Stack web developer and a programmer who has vast knowlege in so many languages including: Java, JavaScript, Python, Node.js, React.js, SQL, Visual Basic, CSS, HTML and good knowledge in Database systems.</p>
+          </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#courses">Projects</a></li>
+              <li><a href="#admissions">Qualifications</a></li>
+              <li><a href="#contact">Abilities</a></li>
+              <li><a href="#blog">About</a></li>
+              <li><a href="#events">Contact</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Services</h3>
+            <ul class="footer-links">
+              <li><a href="#l">Web Development</a></li>
+              <li><a href="#l">Software Engineering</a></li>
+              <li><a href="#l">Networking</a></li>
+              <li><a href="#l">Cyber Security</a></li>
+              <li><a href="#l">Computer Training</a></li>
+              <li><a href="#l">IT Support</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Search the Site</h3>
+            <form class="footer-search-form">
+              <input type="text" class="footer-search-input" placeholder="Search..." aria-label="Search">
+              <button type="submit" class="footer-search-button"><i class="fas fa-search"></i></button>
+            </form>
+            <h3>Follow Us</h3>
+            <ul class="social-media-links">
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 DietMaster. All Rights Reserved.</p>
+        </div>
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+        <script src="specificnotification.js"></script>
+    <!-- <script src="navbar.js"></script>  -->
+    <script src="dashboard.js"></script>
+       
+    <!-- <script src="contact.js"></script> -->
+
+    
+    
+    
+    
+
+    <script>
+      let currentChart = null;
+    
+      // Function to render the nutritional analysis
+      const renderNutritionalAnalysis = (nutritionPercentages) => {
+        const analysisDiv = document.getElementById("nutritionAnalysis");
+        analysisDiv.innerHTML = nutritionPercentages.map(({ nutrient, percentage, target }) => `
+          <p>
+            <strong>${nutrient}:</strong> ${percentage}% of meals (Target: ${target}%)
+          </p>
+        `).join('');
+      };
+    
+      // Function to fetch and render chart data and nutritional analysis
+      const fetchChartData = (endpoint) => {
+        fetch(endpoint)
+          .then(response => response.json())
+          .then(data => {
+            console.log("Fetched data:", data); // Debugging log
+    
+            // Handle no data case
+            if (data.noData) {
+              document.getElementById("analysisMessage").style.display = "block";
+              document.getElementById("analysisMessage").innerText = "No data available.";
+              document.getElementById("nutritionAnalysis").innerHTML = ""; // Clear nutritional analysis
+              if (currentChart) currentChart.destroy(); // Destroy existing chart
+              return;
+            }
+    
+            document.getElementById("analysisMessage").style.display = "none";
+    
+            // Render Chart
+            const ctx = document.getElementById("mealChart").getContext("2d");
+            if (currentChart) currentChart.destroy();
+    
+            currentChart = new Chart(ctx, {
+              type: 'bar',
+              data: data.chartData,
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                    labels: {
+                      color: 'black',
+                      font: { size: 12, family: 'Arial' }
+                    }
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (tooltipItem) => `${tooltipItem.dataset.label}: ${tooltipItem.raw} meals`
+                    }
+                  }
+                }
+              }
+            });
+    
+            // Render Nutritional Analysis if available
+            if (data.nutritionPercentages) {
+              renderNutritionalAnalysis(data.nutritionPercentages);
+            } else {
+              document.getElementById("nutritionAnalysis").innerHTML = ""; // Clear if no nutritional data
+            }
+          })
+          .catch(error => {
+            console.error("Error fetching chart data:", error);
+            document.getElementById("analysisMessage").innerText = "Error loading chart data.";
+            document.getElementById("analysisMessage").style.display = "block";
+          });
+      };
+    
+      // Event listeners for buttons
+      document.getElementById("weeklyBtn").addEventListener("click", () => fetchChartData("/analysis/weekly"));
+      document.getElementById("monthlyBtn").addEventListener("click", () => fetchChartData("/analysis/monthly"));
+      document.getElementById("yearlyBtn").addEventListener("click", () => fetchChartData("/analysis/yearly"));
+    
+      // Fetch weekly data by default on page load
+      fetchChartData("/analysis/weekly");
+    </script>
+    
+    
+
+
+<script>
+ // Get the dropdown menu
+const dropdown = document.getElementById("registration-dropdown");
+
+// Ensure dropdown exists
+if (dropdown) {
+  dropdown.addEventListener("click", async (event) => {
+    // Check if the clicked element is a link
+    if (event.target.tagName === "A") {
+      event.preventDefault(); // Prevent default navigation behavior
+
+      const selectedCourse = event.target.dataset.course; // Get the course name
+      console.log("Selected course:", selectedCourse); // Debugging log
+
+      try {
+        // Send a request to check registration
+        const response = await fetch("/check-registration", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ course: selectedCourse }),
+        });
+
+        const data = await response.json();
+        console.log("Server response:", data); // Debugging log
+
+        if (data.isRegistered === false) {
+          // Redirect to the courseregistration page with the selected course as a query parameter
+          window.location.href = `/courseregistration?course=${encodeURIComponent(selectedCourse)}`;
+        } else {
+          console.log("User registered. Redirect to classes page.");
+          window.location.href = '/joinclasses';
+        }
+      } catch (error) {
+        console.error("Error checking registration:", error);
+      }
+    }
+  });
+} else {
+  console.error("Dropdown menu not found!");
+}
+
+</script>
+
+<script>
+  // Get the dropdown menu
+ const servicesContent = document.getElementById("servicesContent");
+ 
+ // Ensure dropdown exists
+ if (servicesContent) {
+  servicesContent.addEventListener("click", async (event) => {
+     // Check if the clicked element is a link
+     if (event.target.tagName === "A") {
+       event.preventDefault(); // Prevent default navigation behavior
+ 
+       const selectedCourse = event.target.dataset.course; // Get the course name
+       console.log("Selected course:", selectedCourse); // Debugging log
+ 
+       try {
+         // Send a request to check registration
+         const response = await fetch("/check-registration", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify({ course: selectedCourse }),
+         });
+ 
+         const data = await response.json();
+         console.log("Server response:", data); // Debugging log
+ 
+         if (data.isRegistered === false) {
+           // Redirect to the courseregistration page with the selected course as a query parameter
+           window.location.href = `/courseregistration?course=${encodeURIComponent(selectedCourse)}`;
+         } else {
+           console.log("User registered. Redirect to classes page.");
+           window.location.href = '/joinclasses';
+         }
+       } catch (error) {
+         console.error("Error checking registration:", error);
+       }
+     }
+   });
+ } else {
+   console.error("servicesContent not found!");
+ }
+ 
+ </script>
+
+
+ 
+    
+</body>
+</html>
